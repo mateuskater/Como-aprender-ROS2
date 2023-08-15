@@ -25,16 +25,14 @@ Não precisa ficar preocupado em entender tudo que é falado no vídeo, porque �
 
 Ah, não esqueça de dar uma olhada na documentação do ROS2. Lá tem tudo explicadinho com mais detalhes. Eu até fiz uma lista com os links dos conceitos que foram falados no vídeo para você poder consultar:
 
-
-
 * [Understanding nodes](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html)
 * [Understanding services](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services.html)
 * [Understanding parameters](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html)
 * [Launching nodes](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Launching-Multiple-Nodes/Launching-Multiple-Nodes.html)
 
+Na SABER de 2021 foi feito um curso de ROS, a playlist contendo as 3 partes da aula pode ser vista aqui: [SABER 2021 - ROS](https://www.youtube.com/playlist?list=PL1O8utbokSSHPhYTE7Y12FFXelXVjxU8i).
+
 Alguns outros conceitos básicos de ROS, mas não menos importantes incluem:
-
-
 
 * Como configurar seu _enviroment_ - [Configuring environment](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Configuring-ROS2-Environment.html)
 * [Understanding actions](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html#)
