@@ -1,77 +1,98 @@
-<h1>Como aprender ROS2<h1>
-<img src="https://github.com/ros-infrastructure/artwork/blob/master/distributions/humble/HumbleHawksbill.png"
-     alt="Markdown Monster icon"
-     width="30%"
-     height="30%"/>
+# Instalando o Turtlesim
 
-<h2>1. Instalação</h2>
+Nessa primeira tarefe nos assumimos que você já possui o ROS2 instalado no seu computador. Para começar vamos instalar o Turtlesim.
+O Turtlesim pode ser instalado com os seguintes comandos:
 
-DICA: Para instalar o Gazebo junto com o ROS use o comando `sudo apt install ros-humble-desktop-full` ao invés de `sudo apt install ros-humble-desktop`
+$ sudo apt update
+$ sudo apt install ros-humble-turtlesim
 
-Para iniciar a instalação do ROS2 Humble, é importante seguir as instruções disponíveis no link [Ubuntu (Debian) - ROS 2 Documentation: Humble documentation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html). Além disso, caso prefira, você pode assistir ao vídeo "[How to install ROS | Getting Ready to Build Robots with ROS #3](https://www.youtube.com/watch?v=uWzOk0nkTcI&list=PLunhqkrRNRhYYCaSTVP-qJnyUPkTxJnBt&index=3)", onde o processo de instalação do ROS2 Foxy é explicado - embora o processo seja quase o mesmo para o Humble.
+Para confirmar que tudo está correto execute esse comando:
 
-É importante ressaltar que não é recomendado o uso do ROS2 no Windows, já que vários pacotes não oferecem suporte para esse sistema operacional. Além disso, o ROS2 foi desenvolvido originalmente para rodar no Linux, o que pode gerar problemas de compatibilidade.
+ros2 pkg executables turtlesim
 
-Por fim, para instalar o ROS2 Humble, é necessário possuir um sistema baseado no Ubuntu Jammy, NÃO RECOMENDO utilizar algum derivado do Ubuntu como o Mint, porque tive problemas tentando utilizar o novo Gazebo. Certifique-se de atender a esse requisito antes de iniciar a instalação.
-     
- 
-     
-<h2>2. Conceitos Básicos do ROS2</h2>
+A saída deve ser algo assim:
 
+turtlesim draw_square
+turtlesim mimic
+turtlesim turtle_teleop_key
+turtlesim turtlesim_node
 
-Esse vídeo do canal **Articulated Robotics** ensina os conceitos básicos do ROS2, como nodes, services, parameters, remappings, launching e packages. O vídeo é "[10 things you need to know about ROS! | Getting Ready to Build Robots with ROS #4](https://www.youtube.com/watch?v=KAASuA3_4eg&list=PLunhqkrRNRhYYCaSTVP-qJnyUPkTxJnBt&index=4)".
+# Objetivo Final
 
-Não precisa ficar preocupado em entender tudo que é falado no vídeo, porque é normal demorar um pouquinho para pegar o jeito dessas coisas. Mas com a prática e tentando escrever seus próprios nodes, você vai ficar mais craque!
+...
 
-Ah, não esqueça de dar uma olhada na documentação do ROS2. Lá tem tudo explicadinho com mais detalhes. Eu até fiz uma lista com os links dos conceitos que foram falados no vídeo para você poder consultar:
+# Tarefa 1: Introdução Turtlesim
 
-* [Understanding nodes](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html)
-* [Understanding services](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services.html)
-* [Understanding parameters](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html)
-* [Launching nodes](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Launching-Multiple-Nodes/Launching-Multiple-Nodes.html)
+### Objetivo: Introduzir e familiarizar os vocês com o ambiente Turtlesim.
 
-Na SABER de 2021 foi feito um curso de ROS, a playlist contendo as 3 partes da aula pode ser vista aqui: [SABER 2021 - ROS](https://www.youtube.com/playlist?list=PL1O8utbokSSHPhYTE7Y12FFXelXVjxU8i).
+### Parte 1 : Rodar o turtlesim
 
-Alguns outros conceitos básicos de ROS, mas não menos importantes incluem:
+O turtlesim é um simulador simples criado para aprender ROS2 e para se familiarizar com ele você pode começar executando esse comando:
 
-* Como configurar seu _enviroment_ - [Configuring environment](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Configuring-ROS2-Environment.html)
-* [Understanding actions](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html#)
+ros2 run turtlesim turtlesim_node
 
-E tudo isso junto pode ser visto em [Beginner: CLI tools](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools.html).
+Você deverá vem uma janela como essa:
 
-<h2>3. Simulação com Gazebo</h2>
+![Alt text](assets/imgs/turtlesim.png)
 
+Como vocês podem ver é uma simples janela com fundo azul e uma tartaruga no centro, sem muito o que fazer por enquanto.
 
-O Gazebo é um programa gratuito feito pela comunidade de robótica em 2002, com o intuito de ajudar no desenvolvimento de aplicativos avançados para robôs. Ele tem um ambiente 3D de simulação e ferramentas que ajudam na criação dos robôs. Muita gente usa o Gazebo porque ele é muito bom e fácil de usar.
+## Parte 2 : Usar o comando do teleop_key para movimentar a tartaruga
 
-Nesse tutorial, você vai aprender como instalar o **Gazebo Classic** "[Simulating Robots with Gazebo and ROS](https://www.youtube.com/watch?v=laWn7_cj434&list=PLunhqkrRNRhYYCaSTVP-qJnyUPkTxJnBt&index=9)". Mas atenção, nós vamos usar a **nova** versão do **Gazebo** que é ainda melhor, por isso o processo de instalação e utilização é diferente. Se você tiver instalado a versão mais nova do Gazebo no ROS2 Humble, você já pode seguir o tutorial "[Setting up a robot simulation (Gazebo)](https://docs.ros.org/en/humble/Tutorials/Advanced/Simulators/Gazebo.html)". Caso não tenha, você pode instalar o Gazebo seguindo esse tutorial “[Getting Started with Gazebo?](https://gazebosim.org/docs)”
+Agora que você já tem o turtlesim rodando, você pode usar o comando do teleop_key para movimentar a tartaruga. Para isso abra um novo terminal e execute o seguinte comando:
 
-Durante a instalação do Gazebo você pode se encontrar com o Rviz, porque ambos são usados juntos. Mas o que é o Rviz? O Rviz é uma ferramenta do ROS que mostra dados de sensores e modelos de robôs em uma visualização 3D em tempo real. Você pode ver imagens de câmeras, modelos de robôs e mapas de ocupação, além de customizar a aparência e interação dos objetos. Para mais informações acesse [Wiki - Rviz](http://wiki.ros.org/rviz).
+ros2 run turtlesim turtle_teleop_key
 
-E aí, qual é a diferença entre o Gazebo e o Rviz? De maneira simples, o Gazebo é utilizado para simular robôs e seus ambientes, enquanto o Rviz é usado para ver e monitorar os dados dos sensores e modelos dos robôs enquanto o código é executado em hardware real ou em simulação.
+Você deverá ver uma saída como essa:
 
-<h2>4. Aplicação de conceitos básicos</h2>
+![Alt text](assets/imgs/teleop_key_turtlesim.png)
 
+Experimente usar as teclas para movimentar a tartaruga e veja o que acontece.
 
-Nesse ponto eu assumo que você tenha uma base conceitual de ROS, e que saiba dizer mesmo que não tão bem o que é um node, quais são os tipos de nodes, por que essa estrutura usada pelo ROS2 é ótima, o que é Gazebo, Rviz, etc.
+### Conclusão
 
-Para fazer as atividades propostas aqui você pode seguir a documentação “[Beginner: Client libraries](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries.html)” .
+Tá bom, muito legal uma tartaruga andando em uma simples janela, mas o que isso tem a ver com robôtica? Você ainda pode não saber, mas a mesma estrutura que você acaba de usar para controlar essa tartaruga foi usada de diversas maneira para controlar esse robozinho aqui:
 
-Um aviso, como estamos usando a nova versão do ROS2 a Humble, alguns dos comandos e processos dos vídeos citados aqui podem ser diferentes, então na dúvida consulte a documentação.
+![Alt text](assets/imgs/robonaut.jpg)
 
-<h3>4.1 Criar um ROS package</h3>
+Esse robô se chama Robonaut, e foi construido pela NASA utilizando ROS2. Nessa foto ele está na Estação Espacial Internacional (ISS) e é controlado por astronautas da NASA. Ele é capaz de realizar diversas tarefas na ISS, como por exemplo, trocar baterias e realizar experimentos científicos. Se você quiser ler mais sobre o Robonaut ou sobre ROS2 no espaço, você pode acessar esse link: [ROS…in…space!](https://www.openrobotics.org/blog/2022/2/2/rosinspace)
 
 
-Nesse tópico sua tarefa é criar um simples _package_,  esse vídeo mostra esse processo “[Making Your First ROS Package](https://www.youtube.com/watch?v=Y_SyQXTL2XU&list=PLunhqkrRNRhYYCaSTVP-qJnyUPkTxJnBt&index=6)”. Recomendo também você ler e executar os tutorias da documentação do ROS2 “[Beginner: Client libraries](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries.html)” até o “_Creating a package_”.
 
-<h3>4.2 Criar um Publisher e Subscriber</h3>
+### Tarefas:
+- [ ] Rodar o turtlesim 
+- [ ] Usar o comando do teleop_key para movimentar a tartaruga
 
+# Tarefa 2: Nós e Tópicos no ROS2
 
-Você pode seguir esse tutorial para realizar essa tarefa [Writing a simple publisher and subscriber (Python)](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html#), se você desejar pode fazer isso em C++ também, mas o código é mais complicado. Esse vídeo pode te ajudar a realizar essa tarefas “[Hands-On ROS2 - Part 1 (Publisher/Subscriber)](https://www.youtube.com/watch?v=8407qTyBRe0)”.
+Objetivo: Ensinar os conceitos de nós e tópicos no ROS2.
+Passos:
+Criar um novo nó que publique comandos de movimento.
+Criar um nó que assine os comandos e mova a tartaruga em resposta.
+# Tarefa 3: Mensagens Personalizadas no ROS2
 
-<h3>4.3 Criar um Service e um Client</h3>
+Objetivo: Introduzir mensagens personalizadas no ROS2.
+Passos:
+Definir uma mensagem personalizada para enviar informações de posição da tartaruga.
+Modificar os nós para publicar e assinar essas mensagens personalizadas.
+#Tarefa 4: Serviços no ROS2
 
+Objetivo: Ensinar o uso de serviços para tarefas síncronas no ROS2.
+Passos:
+Criar um serviço que permita ao usuário definir a posição desejada da tartaruga.
+Modificar um nó para usar esse serviço para mover a tartaruga para uma posição específica.
 
-Esse tutorial da documentação explica bem esse processo “[Writing a simple service and client (Python)](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Service-And-Client.html)”, você pode também seguir as intruções desse vídeo “[Hands-On ROS2 - Part 2 (Service/Client)](https://www.youtube.com/watch?v=RJFoM-vnDJo)”.
+# Tarefa 5: Ações no ROS2
 
-## Alguns possível erros
+Objetivo: Introduzir ações para tarefas assíncronas no ROS2.
+Passos:
+Criar uma ação que permita ao usuário definir um objetivo de movimento para a tartaruga.
+Criar um nó que execute ações para mover a tartaruga de acordo com o objetivo.
+
+# Tarefa Final: Combinação de Tarefas
+
+Objetivo: Criar uma aplicação mais complexa que utiliza todos os conceitos aprendidos.
+Passos:
+Crie um cenário onde a tartaruga deve seguir um caminho predefinido (usando serviços).
+Ao longo do caminho, a tartaruga deve evitar obstáculos (usando ações).
+Lembre-se de fornecer explicações detalhadas, exemplos de código e exercícios práticos para os alunos em cada tarefa. Certifique-se também de incluir desafios opcionais para alunos mais avançados e de incentivar a experimentação e a resolução de problemas. Ao final do curso, os alunos devem ter um entendimento sólido dos conceitos básicos do ROS2 e como aplicá-los usando o Turtlesim.
