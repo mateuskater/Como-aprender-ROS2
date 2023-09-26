@@ -44,7 +44,7 @@ Você deverá vem uma janela como essa:
 
 Como vocês podem ver é uma simples janela com fundo azul e uma tartaruga no centro, sem muito o que fazer por enquanto.
 
-## Parte 2 : Usar o comando do teleop_key para movimentar a tartaruga
+### Parte 2 : Usar o comando do teleop_key para movimentar a tartaruga
 
 Agora que você já tem o turtlesim rodando, você pode usar o comando do teleop_key para movimentar a tartaruga. Para isso abra um novo terminal e execute o seguinte comando:
 
