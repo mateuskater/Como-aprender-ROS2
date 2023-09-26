@@ -108,23 +108,20 @@ Agorar vamos ver o que cada parte desse comando significa:
 - **ros2 pkg create**: comando para criar um novo pacote
 - **--build-type ament_python**: define o tipo de pacote que estamos criando, neste caso um pacote em python
 - **--node-name hello_world**: define o nome do nó que estamos criando, neste caso o nome do nó é hello_world
-- turtlesim_project: define o nome do pacote que estamos criando, neste caso o nome do pacote é turtlesim_project
+- **turtlesim_project**: define o nome do pacote que estamos criando, neste caso o nome do pacote é turtlesim_project
 
 Se tudo deu certo você terá uma estrutura de diretorios como essa:
 
 ![Alt text](assets/imgs/package_init_vs_code.png)
 
-Objetivo: Ensinar os conceitos de nós e tópicos no ROS2.
-Passos:
-Criar um novo nó que publique comandos de movimento.
-Criar um nó que assine os comandos e mova a tartaruga em resposta.
 # Tarefa 3: Mensagens Personalizadas no ROS2
 
 Objetivo: Introduzir mensagens personalizadas no ROS2.
 Passos:
 Definir uma mensagem personalizada para enviar informações de posição da tartaruga.
 Modificar os nós para publicar e assinar essas mensagens personalizadas.
-#Tarefa 4: Serviços no ROS2
+
+# Tarefa 4: Serviços no ROS2
 
 Objetivo: Ensinar o uso de serviços para tarefas síncronas no ROS2.
 Passos:
