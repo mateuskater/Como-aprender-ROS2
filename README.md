@@ -91,19 +91,23 @@ tarefa1_ws/
     src/
 ```
 
-Onde "tarefa1_ws" é o nome do nosso workspace. O diretório "src" contém todos os pacotes ROS2 necessários para o nosso projeto. O diretório "build" contém todos os arquivos de compilação gerados durante o processo de compilação. O diretório "install" contém todos os arquivos de instalação gerados durante o processo de instalação. Veremos o que é esse processo de compilação e instalação mais tarde. O que você precisar criar agora é o diretório "tarefa1_ws" e o diretório "src" dentro dele. 
-
-Com isso pronto entre dentro do diretório "src" e execute o seguinte comando:
+Onde "tarefa1_ws" é o nome do nosso workspace. O diretório "src" contém todos os pacotes ROS2 necessários para o nosso projeto. O diretório "build" contém todos os arquivos de compilação gerados durante o processo de compilação. O diretório "install" contém todos os arquivos de instalação gerados durante o processo de instalação. Veremos o que é esse processo de compilação e instalação mais tarde. O que você precisar criar agora é o diretório "tarefa1_ws" e o diretório "src" dentro dele. Estão vamos lá, abra um terminal e execute os seguintes comandos:
 
 ```
-ros2 pkg create --build-type ament_python --node-name hello_word turtlesim_project
+mkdir -p tarefa1_ws/src
+```
+
+Com isso pronto entre **dentro** do diretório "src" e execute o seguinte comando:
+
+```
+ros2 pkg create --build-type ament_python --node-name hello_world turtlesim_project
 ```
 
 Agorar vamos ver o que cada parte desse comando significa:
 
-- ros2 pkg create: comando para criar um novo pacote
-- --build-type ament_python: define o tipo de pacote que estamos criando, neste caso um pacote em python
-- --node-name hello_word: define o nome do nó que estamos criando, neste caso o nome do nó é hello_word
+- **ros2 pkg create**: comando para criar um novo pacote
+- **--build-type ament_python**: define o tipo de pacote que estamos criando, neste caso um pacote em python
+- **--node-name hello_world**: define o nome do nó que estamos criando, neste caso o nome do nó é hello_world
 - turtlesim_project: define o nome do pacote que estamos criando, neste caso o nome do pacote é turtlesim_project
 
 Se tudo deu certo você terá uma estrutura de diretorios como essa:
