@@ -1,6 +1,7 @@
 # Instalando o Turtlesim
 
-Nessa primeira tarefe nos assumimos que você já possui o ROS2 instalado no seu computador. Para começar vamos instalar o Turtlesim.
+Nessa primeira tarefa nos assumimos que você já possui o ROS2 instalado no seu computador. Para começar vamos instalar o Turtlesim, que é um simulador simples criado para aprender ROS2.
+
 O Turtlesim pode ser instalado com os seguintes comandos:
 
 ```
@@ -22,9 +23,10 @@ turtlesim turtle_teleop_key
 turtlesim turtlesim_node
 ```
 
-# Objetivo Final
 
-...
+# Motivação 
+
+Completando esse projeto com o turtlesim você vai aprender os conceito básicos do ROS2. Esses conceitos serão usados em projetos mais complexos que serão desenvolvidos ao longo dos projetos nesse repositório.
 
 # Tarefa 1: Introdução Turtlesim
 
@@ -76,7 +78,7 @@ Esse robô se chama **Robonaut**, e foi construido pela **NASA** utilizando **RO
 
 #### Objetivo: Ensinar os conceitos básicos de nós e tópicos no ROS2. Para isso vamos criar nosso próprio nó para controlar a tartaruga.
 
-#### Parte 1: Criando um novo pacote
+### Parte 1: Criando um novo pacote
 
 Nesta tarefa, iremos desenvolver nosso próprio nó para controlar uma tartaruga. No entanto, antes de começarmos, precisamos configurar um ambiente chamado 'workspace'. Mas afinal, o que é um 'workspace'? Em termos simples, um 'workspace' é um diretório que contém todos os pacotes ROS2 necessários para um projeto específico. É como um espaço de trabalho dedicado para sua aplicação ROS2.
 
@@ -113,6 +115,52 @@ Agorar vamos ver o que cada parte desse comando significa:
 Se tudo deu certo você terá uma estrutura de diretorios como essa:
 
 ![Alt text](assets/imgs/package_init_vs_code.png)
+
+### Parte 2: Criando um node
+
+#### Afinal, o que é um node?
+
+
+Um node no ROS2 é algo parecido com uma função, porque ele deve ser modular e responsável apenas por uma ação específica. Por exemplo, imagine que estamos desenvolvendo um robô que deve ser capaz de se mover e de reconhecer objetos. Nesse caso, podemos ter dois nodes, um para controlar o movimento do robô e outro para reconhecer objetos. Esses nodes podem ser executados em paralelo e se comunicar entre si para realizar tarefas mais complexas. É óbvio que esse exemplo é muito simples, e em uma aplicação real teríamos muito mais nodes, mas a ideia é essa.
+
+![Alt text](assets/gifs/Nodes-TopicandService.gif)
+
+Os nodes se comunicam entre si usando tópicos e serviços. Vamos falar mais sobre isso mais tarde, mas por enquanto vamos focar em criar nosso primeiro node.
+
+#### Estrutura de um node
+
+Para começarmos crie um arquivo chamado "turtlesim_teleop.py" dentro do diretório "turtlesim_project/turtlesim_project" e adicione o seguinte código:
+
+```python
+import rclpy
+from rclpy.node import Node
+
+class MyNode(Node):
+    def __init__(self):
+        super().__init__('my_node')
+        self.get_logger().info("Hello World!")
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = MyNode()
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
+```
+
+Essa é a estrutura básica de um node em python. Vamos explicar agora as partes mais importantes desse código:
+
+```python
+import rclpy
+from rclpy.node import Node
+```
+
+**import rclpy:** Esta linha importa o módulo rclpy. rclpy é a biblioteca do cliente Python para o ROS2 (Robot Operating System 2). Ela fornece as ferramentas necessárias para criar e executar nós no ROS2 usando Python.
+
+**from rclpy.node import Node**: Esta linha importa a classe Node do módulo rclpy.node. A classe Node é uma classe fundamental no ROS2 que representa um node.
 
 # Tarefa 3: Mensagens Personalizadas no ROS2
 
