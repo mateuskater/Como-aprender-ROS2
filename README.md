@@ -69,11 +69,6 @@ Tá bom, muito legal uma tartaruga andando em uma simples janela, mas o que isso
 Esse robô se chama **Robonaut**, e foi construido pela **NASA** utilizando **ROS2**. Nessa foto ele está na Estação Espacial Internacional (ISS) e é controlado por astronautas da NASA. Ele é capaz de realizar diversas tarefas na ISS, como por exemplo, trocar baterias e realizar experimentos científicos. Se você quiser ler mais sobre o Robonaut ou sobre ROS2 no espaço, você pode acessar esse link: [ROS…in…space!](https://www.openrobotics.org/blog/2022/2/2/rosinspace)
 
 
-
-### Tarefas:
-- [ ] Rodar o turtlesim 
-- [ ] Usar o comando do teleop_key para movimentar a tartaruga
-
 # Tarefa 2: Nós e Tópicos no ROS2
 
 #### Objetivo: Ensinar os conceitos básicos de nós e tópicos no ROS2. Para isso vamos criar nosso próprio nó para controlar a tartaruga.
@@ -151,16 +146,35 @@ if __name__ == '__main__':
     main()
 ```
 
-Essa é a estrutura básica de um node em python. Vamos explicar agora as partes mais importantes desse código:
+Essa é a estrutura básica de um node em python. Vamos explicar agora as partes mais importantes desse código.
 
 ```python
 import rclpy
 from rclpy.node import Node
 ```
 
-**import rclpy:** Esta linha importa o módulo rclpy. rclpy é a biblioteca do cliente Python para o ROS2 (Robot Operating System 2). Ela fornece as ferramentas necessárias para criar e executar nós no ROS2 usando Python.
+`import rclpy:` Esta linha importa o módulo rclpy. rclpy é a biblioteca do cliente Python para o ROS2. Ela fornece as ferramentas necessárias para criar e executar nodes usando Python.
 
-**from rclpy.node import Node**: Esta linha importa a classe Node do módulo rclpy.node. A classe Node é uma classe fundamental no ROS2 que representa um node.
+`from rclpy.node import Node:` Esta linha importa a classe Node do módulo rclpy.node. A classe Node é uma classe fundamental no ROS2 que representa um node.
+
+```python
+class MyNode(Node):
+    def __init__(self):
+        super().__init__('my_node')
+        self.get_logger().info("Hello World!")
+```
+
+Este trecho de código define uma classe chamada `MyNode` que herda da classe `Node` do ROS2. Aqui está o que cada linha faz:
+
+- `class MyNode(Node):` Esta linha define uma nova classe chamada `MyNode` que herda de `Node`. A classe `Node` é uma classe fundamental no ROS2 que representa um nó.
+
+- `def __init__(self):` Esta linha define o método construtor para a classe `MyNode`. Este método é chamado automaticamente quando você cria uma nova instância da classe.
+
+- `super().__init__('my_node')` Esta linha chama o método construtor da classe pai (`Node`) usando a função `super()`. Isso permite que você use os métodos e atributos da classe pai na sua subclasse. O argumento `'my_node'` é o nome do nó e é passado para o construtor da classe pai.
+
+- `self.get_logger().info("Hello World!")`:  Esta linha usa o método `get_logger()` para obter o logger associado a este nó. O logger é usado para registrar mensagens de log. O método `info()` é usado para registrar uma mensagem de informação. Neste caso, ele registra a mensagem "Hello World!".
+
+
 
 # Tarefa 3: Mensagens Personalizadas no ROS2
 
