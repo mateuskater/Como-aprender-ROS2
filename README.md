@@ -30,9 +30,9 @@ Completando esse projeto com o turtlesim você vai aprender os conceito básicos
 
 # Tarefa 1: Introdução Turtlesim
 
-#### Objetivo: Introduzir e familiarizar os vocês com o ambiente Turtlesim.
+## Objetivo: Introduzir e familiarizar os vocês com o ambiente Turtlesim.
 
-### Parte 1 : Rodar o turtlesim
+## Parte 1 : Rodar o turtlesim
 
 O turtlesim é um simulador simples criado para aprender ROS2 e para se familiarizar com ele você pode começar executando esse comando:
 
@@ -46,7 +46,7 @@ Você deverá vem uma janela como essa:
 
 Como vocês podem ver é uma simples janela com fundo azul e uma tartaruga no centro, sem muito o que fazer por enquanto.
 
-### Parte 2 : Usar o comando do teleop_key para movimentar a tartaruga
+## Parte 2 : Usar o comando do teleop_key para movimentar a tartaruga
 
 Agora que você já tem o turtlesim rodando, você pode usar o comando do teleop_key para movimentar a tartaruga. Para isso abra um novo terminal e execute o seguinte comando:
 
@@ -60,7 +60,7 @@ Você deverá ver uma saída como essa:
 
 Experimente usar as teclas para movimentar a tartaruga e veja o que acontece.
 
-#### Conclusão
+## Conclusão
 
 Tá bom, muito legal uma tartaruga andando em uma simples janela, mas o que isso tem a ver com robôtica? Você ainda pode não saber, mas a mesma estrutura que você acaba de usar para controlar essa tartaruga foi usada de diversas maneira para controlar esse robozinho aqui:
 
@@ -71,9 +71,9 @@ Esse robô se chama **Robonaut**, e foi construido pela **NASA** utilizando **RO
 
 # Tarefa 2: Nós e Tópicos no ROS2
 
-#### Objetivo: Ensinar os conceitos básicos de nós e tópicos no ROS2. Para isso vamos criar nosso próprio nó para controlar a tartaruga.
+## Objetivo: Ensinar os conceitos básicos de nós e tópicos no ROS2. Para isso vamos criar nosso próprio nó para controlar a tartaruga.
 
-### Parte 1: Criando um novo pacote
+## Parte 1: Criando um novo pacote
 
 Nesta tarefa, iremos desenvolver nosso próprio nó para controlar uma tartaruga. No entanto, antes de começarmos, precisamos configurar um ambiente chamado 'workspace'. Mas afinal, o que é um 'workspace'? Em termos simples, um 'workspace' é um diretório que contém todos os pacotes ROS2 necessários para um projeto específico. É como um espaço de trabalho dedicado para sua aplicação ROS2.
 
@@ -111,9 +111,9 @@ Se tudo deu certo você terá uma estrutura de diretorios como essa:
 
 ![Alt text](assets/imgs/package_init_vs_code.png)
 
-### Parte 2: Criando um node
+## Parte 2: Criando um node
 
-#### Afinal, o que é um node?
+### Afinal, o que é um node?
 
 
 Um node no ROS2 é algo parecido com uma função, porque ele deve ser modular e responsável apenas por uma ação específica. Por exemplo, imagine que estamos desenvolvendo um robô que deve ser capaz de se mover e de reconhecer objetos. Nesse caso, podemos ter dois nodes, um para controlar o movimento do robô e outro para reconhecer objetos. Esses nodes podem ser executados em paralelo e se comunicar entre si para realizar tarefas mais complexas. É óbvio que esse exemplo é muito simples, e em uma aplicação real teríamos muito mais nodes, mas a ideia é essa.
@@ -122,7 +122,7 @@ Um node no ROS2 é algo parecido com uma função, porque ele deve ser modular e
 
 Os nodes se comunicam entre si usando tópicos e serviços. Vamos falar mais sobre isso mais tarde, mas por enquanto vamos focar em criar nosso primeiro node.
 
-#### Estrutura de um node
+### Estrutura de um node
 
 Para começarmos crie um arquivo chamado "turtlesim_teleop.py" dentro do diretório "turtlesim_project/turtlesim_project" e adicione o seguinte código:
 
@@ -195,7 +195,7 @@ Aqui está o que cada linha faz:
 
 - `rclpy.shutdown()`: Finalmente, esta linha desliga o sistema de comunicação do ROS, liberando quaisquer recursos que ele estava usando.
 
-#### Executando o node
+### Executando o node
 
 Vamos executar essa estrutura básica de node para ver o que acontece. Para isso abra um novo terminal e vá até o diretório "tarefa1_ws" e execute o seguinte comando:
 
@@ -220,6 +220,8 @@ Agora você deve ver uma saída como essa:
 ![Alt text](assets/imgs/terminal.png)
 
 Agora o nosso node está rodando e você pode ver a mensagem "Hello World!" sendo impressa no terminal. Em outro terminal você pode executar o comando `ros2 node list` para ver os nodes que estão rodando. Se você ver o node "my_node" na lista, significa que tudo deu certo.
+
+## Parte 3: Criando um publisher
 
 # Tarefa 3: Mensagens Personalizadas no ROS2
 
