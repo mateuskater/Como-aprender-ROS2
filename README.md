@@ -30,7 +30,7 @@ Completando esse projeto com o turtlesim você vai aprender os conceito básicos
 
 # Tarefa 1: Introdução Turtlesim
 
-## Objetivo: Introduzir e familiarizar os vocês com o ambiente Turtlesim.
+### Objetivo: Introduzir e familiarizar os vocês com o ambiente Turtlesim.
 
 ## Parte 1 : Rodar o turtlesim
 
@@ -71,7 +71,7 @@ Esse robô se chama **Robonaut**, e foi construido pela **NASA** utilizando **RO
 
 # Tarefa 2: Nós e Tópicos no ROS2
 
-## Objetivo: Ensinar os conceitos básicos de nós e tópicos no ROS2. Para isso vamos criar nosso próprio nó para controlar a tartaruga.
+### Objetivo: Ensinar os conceitos básicos de nós e tópicos no ROS2. Para isso vamos criar nosso próprio nó para controlar a tartaruga.
 
 ## Parte 1: Criando um novo pacote
 
