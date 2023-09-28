@@ -153,9 +153,9 @@ import rclpy
 from rclpy.node import Node
 ```
 
-`import rclpy:` Esta linha importa o módulo rclpy. rclpy é a biblioteca do cliente Python para o ROS2. Ela fornece as ferramentas necessárias para criar e executar nodes usando Python.
+`import rclpy`: Esta linha importa o módulo rclpy. rclpy é a biblioteca do cliente Python para o ROS2. Ela fornece as ferramentas necessárias para criar e executar nodes usando Python.
 
-`from rclpy.node import Node:` Esta linha importa a classe Node do módulo rclpy.node. A classe Node é uma classe fundamental no ROS2 que representa um node.
+`from rclpy.node import Node`: Esta linha importa a classe Node do módulo rclpy.node. A classe Node é uma classe fundamental no ROS2 que representa um node.
 
 ```python
 class MyNode(Node):
@@ -166,15 +166,60 @@ class MyNode(Node):
 
 Este trecho de código define uma classe chamada `MyNode` que herda da classe `Node` do ROS2. Aqui está o que cada linha faz:
 
-- `class MyNode(Node):` Esta linha define uma nova classe chamada `MyNode` que herda de `Node`. A classe `Node` é uma classe fundamental no ROS2 que representa um nó.
+- `class MyNode(Node)`: Esta linha define uma nova classe chamada `MyNode` que herda de `Node`. A classe `Node` é uma classe fundamental no ROS2 que representa um nó.
 
-- `def __init__(self):` Esta linha define o método construtor para a classe `MyNode`. Este método é chamado automaticamente quando você cria uma nova instância da classe.
+- `def __init__(self)`: Esta linha define o método construtor para a classe `MyNode`. Este método é chamado automaticamente quando você cria uma nova instância da classe.
 
-- `super().__init__('my_node')` Esta linha chama o método construtor da classe pai (`Node`) usando a função `super()`. Isso permite que você use os métodos e atributos da classe pai na sua subclasse. O argumento `'my_node'` é o nome do nó e é passado para o construtor da classe pai.
+- `super().__init__('my_node')`: Esta linha chama o método construtor da classe pai (`Node`) usando a função `super()`. Isso permite que você use os métodos e atributos da classe pai na sua subclasse. O argumento `'my_node'` é o nome do nó e é passado para o construtor da classe pai.
 
 - `self.get_logger().info("Hello World!")`:  Esta linha usa o método `get_logger()` para obter o logger associado a este nó. O logger é usado para registrar mensagens de log. O método `info()` é usado para registrar uma mensagem de informação. Neste caso, ele registra a mensagem "Hello World!".
 
 
+```python
+def main(args=None):
+    rclpy.init(args=args)
+    node = MyNode()
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
+```
+Aqui está o que cada linha faz:
+
+- `rclpy.init(args=args)`: Esta linha inicializa o sistema de comunicação do ROS. Isso deve ser chamado antes de usar qualquer outra parte do rclpy. Geralmente, passamos os argumentos da linha de comando para esta função, que são usados para configurações do ROS (como definir variáveis de ambiente ROS).
+
+- `node = MyNode()`: Aqui estamos criando uma instância da classe MyNode.
+
+- `rclpy.spin(node)`: Esta função faz com que o programa entre em um loop, processando callbacks sempre que as mensagens são recebidas nos **tópicos** aos quais o nó está inscrito, ou quando os serviços fornecidos pelo nó são chamados. O loop continua até que seja interrompido (por exemplo, se você pressionar Ctrl+C).
+
+- `node.destroy_node()`: Depois que o loop é interrompido, esta linha é chamada para limpar os recursos associados ao nó.
+
+- `rclpy.shutdown()`: Finalmente, esta linha desliga o sistema de comunicação do ROS, liberando quaisquer recursos que ele estava usando.
+
+#### Executando o node
+
+Vamos executar essa estrutura básica de node para ver o que acontece. Para isso abra um novo terminal e vá até o diretório "tarefa1_ws" e execute o seguinte comando:
+
+```
+colcon build
+```
+
+O comando acima serve para compilar o pacote que acabamos de criar. Agora execute o seguinte comando:
+
+```
+source install/setup.bash
+```
+
+Esse comando serve para configurar o ambiente para que o ROS2 possa encontrar o pacote que acabamos de criar. E por fim execute o seguinte comando:
+
+```
+ros2 run turtlesim_project turtlesim_teleop
+```
+
+Agora você deve ver uma saída como essa:
+
+![Alt text](assets/imgs/terminal.png)
+
+Agora o nosso node está rodando e você pode ver a mensagem "Hello World!" sendo impressa no terminal. Em outro terminal você pode executar o comando `ros2 node list` para ver os nodes que estão rodando. Se você ver o node "my_node" na lista, significa que tudo deu certo.
 
 # Tarefa 3: Mensagens Personalizadas no ROS2
 
