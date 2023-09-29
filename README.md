@@ -242,6 +242,24 @@ Essa estrutura distribuída do ROS 2 é muito importante, porque no seu antecess
 Você pode ler mais sobre tópicos aqui: [ROS2 Topics](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html)
 
 
+## Parte 1: Mão na massa
+
+Abra o arquivo "turtlesim_teleop.py" no seu editor de código de preferência e vamos começar alterando a classe "MyNode" para que ela publique mensagens no tópico "/my_first_topic". A primeira coisa que vamos precisar é adicionar esse linha no construtor da classe.
+
+```python
+    self.publisher_ = self.create_publisher(String, 'my_first_topic', 10)
+```
+
+- `self.publisher_`: Esta é uma variável de instância que armazena o publicador que você está criando. O uso de um sublinhado no final (_) é uma convenção comum em Python para indicar que esta variável é destinada a uso interno dentro da classe e não deve ser acessada diretamente.
+
+- `self.create_publisher`: Este é um método fornecido pela classe Node em ROS2. Ele cria um publicador que pode enviar mensagens a um tópico.
+
+- `String`: Este é o tipo de mensagem que o publicador irá enviar. Neste caso, ele está configurado para enviar mensagens do tipo String.
+
+- `'my_first_topic'`: Este é o nome do tópico ao qual o publicador enviará mensagens. Você pode escolher qualquer nome que quiser, desde que seja único dentro do seu sistema ROS.
+
+- `10`: Este é o tamanho da fila de mensagens para o publicador. Se o publicador estiver enviando mensagens mais rápido do que elas podem ser processadas, ele armazenará até 10 mensagens nesta fila. Isso se chama QoS (Quality of Service) e não é muito importante para nós agora, mas você pode ler mais sobre isso aqui: [ROS2 QoS](https://docs.ros.org/en/humble/Tutorials/Quality-of-Service.html)
+
 # Tarefa 3: Mensagens Personalizadas no ROS2
 
 Objetivo: Introduzir mensagens personalizadas no ROS2.
