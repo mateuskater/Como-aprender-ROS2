@@ -223,11 +223,11 @@ Agora o nosso node está rodando e você pode ver a mensagem "Hello World!" send
 
 Para ler mais sobre nodes você pode acessar esse link: [ROS2 Nodes](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html)
 
-# Parte 3: Criando um publisher
+# Tarefa 3: Criando um publisher
 
 Agora nós vamos modificar o nosso node para publicar uma mensagem, um node que publica mensagens é chamado comumente de publisher. O publisher publica mensagens em um tópico, e outros nodes podem se inscrever nesse tópico para receber essas mensagens.
 
-### Mas o que é exatamente um tópico? Vamos responder usando uma analogia com star wars.
+### Mas o que é exatamente um tópico? Vamos responder usando uma analogia com Star Wars 🌌🔫
 
 Imagine que os tópicos são como canais de comunicação entre diferentes naves, planetas ou bases da galáxia. Cada tópico tem um nome único e um tipo de mensagem que define o formato dos dados que são enviados ou recebidos. Por exemplo, o tópico /rebelion pode usar mensagens do tipo string para transmitir mensagens secretas entre os membros da Aliança Rebelde.
 
@@ -236,6 +236,10 @@ Os nós são como os dispositivos ou pessoas que usam esses canais de comunicaç
 Os publicadores e assinantes não precisam saber da existência uns dos outros, apenas do nome e tipo do tópico que usam. Isso permite uma comunicação assíncrona e flexível entre os nós, sem depender de uma conexão direta ou de uma ordem específica. Por exemplo, o nó /leia pode publicar uma mensagem de socorro no tópico /rebelion, sem saber quem vai recebê-la ou quando. O nó /han pode subscrever esse tópico e responder à mensagem, sem saber quem a enviou ou de onde.
 
 ![Alt text](assets/gifs/topics.gif)
+
+Essa estrutura distribuída do ROS 2 é muito importante, porque no seu antecessor ROS 1, existia um mestre central que coordenava todas as atividades dos nodes. Isso significa que todos os nodes dependiam desse mestre para se comunicar uns com os outros. No entanto, no ROS 2, cada node é independente e pode se comunicar diretamente com os outros nodes através dos tópicos. Isso torna o sistema mais robusto e escalável, pois não há um único ponto de falha.
+
+Você pode ler mais sobre tópicos aqui: [ROS2 Topics](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html)
 
 
 # Tarefa 3: Mensagens Personalizadas no ROS2
