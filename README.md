@@ -1,6 +1,6 @@
 # Instalando o Turtlesim
 
-Nessa primeira tarefa nos assumimos que você já possui o ROS2 instalado no seu computador. Para começar vamos instalar o Turtlesim, que é um simulador simples criado para aprender ROS2.
+Nesse primeiro projeto nós assumimos que você já possui o ROS2 instalado no seu computador. Para começar vamos instalar o Turtlesim, que é um simulador simples criado para aprender ROS2.
 
 O Turtlesim pode ser instalado com os seguintes comandos:
 
@@ -28,7 +28,7 @@ turtlesim turtlesim_node
 
 Completando esse projeto com o turtlesim você vai aprender os conceito básicos do ROS2. Esses conceitos serão usados em projetos mais complexos que serão desenvolvidos ao longo dos projetos nesse repositório.
 
-# Tarefa 1: Introdução Turtlesim
+# Tarefa 1: Introdução Turtlesim 🐢
 
 ### Objetivo: Introduzir e familiarizar os vocês com o ambiente Turtlesim.
 
@@ -69,17 +69,17 @@ Tá bom, muito legal uma tartaruga andando em uma simples janela, mas o que isso
 Esse robô se chama **Robonaut**, e foi construido pela **NASA** utilizando **ROS2**. Nessa foto ele está na Estação Espacial Internacional (ISS) e é controlado por astronautas da NASA. Ele é capaz de realizar diversas tarefas na ISS, como por exemplo, trocar baterias e realizar experimentos científicos. Se você quiser ler mais sobre o Robonaut ou sobre ROS2 no espaço, você pode acessar esse link: [ROS…in…space!](https://www.openrobotics.org/blog/2022/2/2/rosinspace)
 
 
-# Tarefa 2: Nós e Tópicos no ROS2
+# Tarefa 2: Nodes no ROS2
 
-### Objetivo: Ensinar os conceitos básicos de nós e tópicos no ROS2. Para isso vamos criar nosso próprio nó para controlar a tartaruga.
+### Objetivo: Ensinar os conceitos básicos de nodes no ROS2.
 
 ## Parte 1: Criando um novo pacote
 
-Nesta tarefa, iremos desenvolver nosso próprio nó para controlar uma tartaruga. No entanto, antes de começarmos, precisamos configurar um ambiente chamado 'workspace'. Mas afinal, o que é um 'workspace'? Em termos simples, um 'workspace' é um diretório que contém todos os pacotes ROS2 necessários para um projeto específico. É como um espaço de trabalho dedicado para sua aplicação ROS2.
+Nesta tarefa, iremos desenvolver nosso próprio nó para controlar uma tartaruga. No entanto, antes de começarmos, precisamos configurar um ambiente chamado 'workspace'. Mas afinal, o que é um 'workspace'? Em termos simples, um 'workspace' é um diretório que contém todos os pacotes necessários para um projeto específico. É como um espaço de trabalho dedicado para sua aplicação ROS2.
 
-Para criar um novo pacote dentro do nosso 'workspace', utilizaremos o comando ros2 pkg create. Este comando nos permite criar um novo pacote ROS2, que é uma unidade organizacional fundamental no ROS2. Os pacotes são responsáveis por conter código, bibliotecas, recursos e outros elementos necessários para realizar tarefas específicas dentro de um sistema ROS2. Com a criação deste pacote, estaremos preparados para começar a desenvolver nosso próprio nó e, assim, iniciar o controle da tartaruga.
+Para criar um novo pacote dentro do nosso 'workspace', utilizaremos o comando `ros2 pkg create`. Este comando nos permite criar um novo pacote, que é uma unidade organizacional fundamental no ROS2. Os pacotes são responsáveis por conter código, bibliotecas, recursos e outros elementos necessários para realizar tarefas específicas dentro de um sistema. Com a criação deste pacote, estaremos preparados para começar a desenvolver nosso próprio nó e, assim, iniciar o controle da tartaruga.
 
-Antes de criarmos o pacote, vamos primeiro ver a estrutura básica de uma "workspace" do ROS2. A estrutura é a seguinte:
+Mas antes de criarmos o pacote, vamos primeiro ver a estrutura básica de uma "workspace" do ROS2. A estrutura é a seguinte:
 
 ```
 tarefa1_ws/
@@ -221,7 +221,22 @@ Agora você deve ver uma saída como essa:
 
 Agora o nosso node está rodando e você pode ver a mensagem "Hello World!" sendo impressa no terminal. Em outro terminal você pode executar o comando `ros2 node list` para ver os nodes que estão rodando. Se você ver o node "my_node" na lista, significa que tudo deu certo.
 
-## Parte 3: Criando um publisher
+Para ler mais sobre nodes você pode acessar esse link: [ROS2 Nodes](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html)
+
+# Parte 3: Criando um publisher
+
+Agora nós vamos modificar o nosso node para publicar uma mensagem, um node que publica mensagens é chamado comumente de publisher. O publisher publica mensagens em um tópico, e outros nodes podem se inscrever nesse tópico para receber essas mensagens.
+
+### Mas o que é exatamente um tópico? Vamos responder usando uma analogia com star wars.
+
+Imagine que os tópicos são como canais de comunicação entre diferentes naves, planetas ou bases da galáxia. Cada tópico tem um nome único e um tipo de mensagem que define o formato dos dados que são enviados ou recebidos. Por exemplo, o tópico /rebelion pode usar mensagens do tipo string para transmitir mensagens secretas entre os membros da Aliança Rebelde.
+
+Os nós são como os dispositivos ou pessoas que usam esses canais de comunicação para trocar informações. Cada nó pode publicar (enviar) ou subscrever (receber) em um ou mais tópicos, dependendo da sua função e interesse. Por exemplo, o nó /luke pode publicar no tópico /force para enviar sinais da Força para outros Jedi, e subscrever no tópico /rebelion para receber instruções da Aliança Rebelde.
+
+Os publicadores e assinantes não precisam saber da existência uns dos outros, apenas do nome e tipo do tópico que usam. Isso permite uma comunicação assíncrona e flexível entre os nós, sem depender de uma conexão direta ou de uma ordem específica. Por exemplo, o nó /leia pode publicar uma mensagem de socorro no tópico /rebelion, sem saber quem vai recebê-la ou quando. O nó /han pode subscrever esse tópico e responder à mensagem, sem saber quem a enviou ou de onde.
+
+![Alt text](assets/gifs/topics.gif)
+
 
 # Tarefa 3: Mensagens Personalizadas no ROS2
 
