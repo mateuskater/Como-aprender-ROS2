@@ -240,11 +240,20 @@ Você pode ler mais sobre tópicos aqui: [ROS2 Topics](https://docs.ros.org/en/h
 
 ## Parte 1: Mão na massa
 
-Abra o arquivo "turtlesim_teleop.py" no seu editor de código de preferência e vamos começar alterando a classe "MyNode" para que ela publique mensagens no tópico "/my_first_topic". A primeira coisa que vamos precisar é adicionar esse linha no construtor da classe.
+Abra o arquivo "turtlesim_teleop.py" no seu editor de código de preferência e vamos começar alterando a classe "MyNode" para que ela publique mensagens no tópico "/my_first_topic". A primeira coisa que vamos precisar é adicionar essas linhas no construtor da classe.
 
 ```python
-    self.publisher_ = self.create_publisher(String, 'my_first_topic', 10)
+ def __init__(self):
+        super().__init__('my_node')
+        self.publisher_ = self.create_publisher(String, 'my_first_topic', 10)
+        timer_period = 0.5 
+        self.timer = self.create_timer(timer_period, self.timer_callback)
+        self.i = 0
 ```
+
+O construtor da classe está criando um publicador que envia mensagens do tipo String para o tópico "my_first_topic". Ele também está criando um timer que chama a função "timer_callback" a cada 0.5 segundos. Vamos criar a função "timer_callback" mais adiante. 
+
+Para a linha `self.publisher_ = self.create_publisher(String, 'my_first_topic', 10)` vamos explicar o que cada parte significa:
 
 - `self.publisher_`: Esta é uma variável de instância que armazena o publicador que você está criando. O uso de um sublinhado no final (_) é uma convenção comum em Python para indicar que esta variável é destinada a uso interno dentro da classe e não deve ser acessada diretamente.
 
@@ -255,6 +264,45 @@ Abra o arquivo "turtlesim_teleop.py" no seu editor de código de preferência e 
 - `'my_first_topic'`: Este é o nome do tópico ao qual o publicador enviará mensagens. Você pode escolher qualquer nome que quiser, desde que seja único dentro do seu sistema ROS.
 
 - `10`: Este é o tamanho da fila de mensagens para o publicador. Se o publicador estiver enviando mensagens mais rápido do que elas podem ser processadas, ele armazenará até 10 mensagens nesta fila. Isso se chama QoS (Quality of Service) e não é muito importante para nós agora, mas você pode ler mais sobre isso aqui: [ROS2 QoS](https://docs.ros.org/en/humble/Tutorials/Quality-of-Service.html)
+
+Também é nessário adicionar o import da classe String no início do arquivo:
+
+```python
+    ...
+    from std_msgs.msg import String
+    ...
+```
+
+Agora vamos criar a função "timer_callback" que será chamada a cada 0.5 segundos.
+
+```python
+ def timer_callback(self):
+        msg = String()
+        msg.data = 'Hello World: %d' % self.i
+        self.publisher_.publish(msg)
+        self.get_logger().info('Publishing: "%s"' % msg.data)
+        self.i += 1
+```
+
+Essa função cria uma mensagem do tipo String, define o valor da mensagem e publica a mensagem no tópico "my_first_topic". A função também registra uma mensagem de log para informar que a mensagem foi publicada. A parte mais interessante dessa função é a linha `self.publisher_.publish(msg)` que usa o publicador que criamos anteriormente para publicar a mensagem no tópico "my_first_topic".
+
+
+Pronto, você já criou seu primeiro publisher. Agora vamos compilar o pacote e executar o node para ver o que acontece. Mas agora vamos fazer isso utilizando o comando `colcon build --symlink-install`. Esse comando serve para criar um link simbólico para o pacote que estamos desenvolvendo. Isso significa que se você alterar o código do pacote, não será necessário compilar novamente para que as alterações sejam aplicadas. Na pasta "tarefa1_ws" execute o seguinte comando:
+
+```
+colcon build --symlink-install
+```
+
+Agora rode o node com o seguinte comando:
+
+```
+ros2 run turtlesim_project turtlesim_teleop 
+```
+
+Você deverá ver uma saída como essa:
+
+![Alt text](assets/imgs/first_publisher.png)
+
 
 # Tarefa 3: Mensagens Personalizadas no ROS2
 
