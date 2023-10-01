@@ -303,6 +303,10 @@ Você deverá ver uma saída como essa:
 
 ![Alt text](assets/imgs/first_publisher.png)
 
+Você pode tentar mudar o nome do tópico e o tipo da mensagem para ver o que acontece. Mas o que adianta falar se ninguém escuta? Vamos resolver isso criando um subscriber. 
+
+# Tarefa 4: Criando um subscriber
+
 
 # Tarefa 3: Mensagens Personalizadas no ROS2
 
