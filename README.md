@@ -1,4 +1,4 @@
-<h1  style="text-decoration:none">Instalando o Turtlesim</h1>
+# Instalando o Turtlesim
 
 Nesse primeiro projeto nós assumimos que você já possui o ROS2 instalado no seu computador. Para começar vamos instalar o Turtlesim, que é um simulador simples criado para aprender ROS2.
 
@@ -29,8 +29,6 @@ turtlesim turtlesim_node
 Completando esse projeto com o turtlesim você vai aprender os conceito básicos do ROS2. Esses conceitos serão usados em projetos mais complexos que serão desenvolvidos ao longo dos projetos nesse repositório.
 
 # Tarefa 1: Introdução Turtlesim 🐢
-
-### Objetivo: Introduzir e familiarizar os vocês com o ambiente Turtlesim.
 
 ## Parte 1 : Rodar o turtlesim
 
@@ -70,8 +68,6 @@ Esse robô se chama **Robonaut**, e foi construido pela **NASA** utilizando **RO
 
 
 # Tarefa 2: Nodes no ROS2
-
-### Objetivo: Ensinar os conceitos básicos de nodes no ROS2.
 
 ## Parte 1: Criando um novo pacote
 
