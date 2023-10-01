@@ -303,7 +303,10 @@ Você deverá ver uma saída como essa:
 
 ![Alt text](assets/imgs/first_publisher.png)
 
-Você pode tentar mudar o nome do tópico e o tipo da mensagem para ver o que acontece. Mas o que adianta falar se ninguém escuta? Vamos resolver isso criando um subscriber. 
+
+Já que falamos de Star Wars aqui, vou sugerir um exercícios simples para vocês. Crie um node chamado /chewbacca que publica mensagens do tipo String no tópico /wookie_sounds. Seja criativo e tente transcrever os sons que o Chewbacca faz em texto.
+
+E agora que você já criou um publisher, que tal criar um subscriber? Vamos lá!
 
 # Tarefa 4: Criando um subscriber
 
