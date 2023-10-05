@@ -370,15 +370,13 @@ Se nada está sendo impresso no terminal, é porque o node não está recebendo 
 
 Pronto, você fez dois nodes se comunicarem usando tópicos. Esses nodes poderiam ser um informações de um sensor e um node que processa essas informações, ou um node que controla um robô e um node que recebe comandos para controlar esse robô. As possibilidades são infinitas.
 
+Agora vamos usar isso que aprendemos para realmente controlar a tartaruga.
 
+# Tarefa 5: Mensagens Personalizadas no ROS2
 
+Até agora nós usamos mensagens do tipo String para publicar e assinar mensagens. No entanto, o ROS2 possui uma grande variedade de mensagens pré-definidas que podem ser usadas para diferentes aplicações. Você pode ver a lista completa dessas mensagens aqui: [ROS2 Messages](https://docs.ros.org/en/humble/Concepts/Basic/About-Interfaces.html#id2) OBS: Nesse link é falado sobre `interfaces`, que é uma abstração para `topics`(que já vimos), `services`(que veremos mais tarde) e `actions`(que veremos mais tarde).
 
-# Tarefa 3: Mensagens Personalizadas no ROS2
-
-Objetivo: Introduzir mensagens personalizadas no ROS2.
-Passos:
-Definir uma mensagem personalizada para enviar informações de posição da tartaruga.
-Modificar os nós para publicar e assinar essas mensagens personalizadas.
+Mas que tipo de mensagem devemos usar para controlar a tartaruga? Uma String não parece ser o tipo de mensagem mais adequado para isso.
 
 # Tarefa 4: Serviços no ROS2
 
