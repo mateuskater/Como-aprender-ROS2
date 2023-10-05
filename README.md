@@ -362,6 +362,13 @@ Agora vamos criar um `entry point` para o nosso node adicionando a seguinte linh
     ...
 ```
 
+Refaça o processo de compilação e tente executar o node novamente. Agora deve funcionar.
+
+Se nada está sendo impresso no terminal, é porque o node não está recebendo nenhuma mensagem. Para resolver isso, abra um novo terminal e execute o publisher que criamos `turtlesim_teleop`. Agora você deve ver as mensagens sendo impressas no terminal.
+
+![Alt text](assets/imgs/publisher_subscriber.png)
+
+Pronto, você fez dois nodes se comunicarem usando tópicos. Esses nodes poderiam ser um informações de um sensor e um node que processa essas informações, ou um node que controla um robô e um node que recebe comandos para controlar esse robô. As possibilidades são infinitas.
 
 
 
