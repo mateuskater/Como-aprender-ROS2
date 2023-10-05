@@ -310,6 +310,61 @@ E agora que você já criou um publisher, que tal criar um subscriber? Vamos lá
 
 # Tarefa 4: Criando um subscriber
 
+Agora vamos criar um novo arquivo chamado "turtlesim_subscriber.py" dentro do diretório "turtlesim_project/turtlesim_project". Antes de começarmos a escrever o código, tente você mesmo criar um subscriber que se inscreve no tópico "my_first_topic" e imprime as mensagens recebidas. Se você não conseguir, não se preocupe, vamos fazer isso juntos agora.
+
+Copie e cole o código que você escreveu no arquivo "turtlesim_teleop.py" para o arquivo "turtlesim_subscriber.py". Agora vamos alterar o construtor da classe "MyNode" para que ela se inscreva no tópico "my_first_topic". O construtor da classe deve ficar assim:
+
+```python
+class MyNode(Node):
+    def __init__(self):
+        super().__init__('my_node')
+        self.subscriber = self.create_subscription(String, 'my_first_topic', self.subscriber_callback, 10)
+```
+
+Ao criar um subscriber passamos os mesmos parâmetros que passamos para o publisher, com exceção da mensagem que é recebida e da função que é chamada quando uma mensagem é recebida. A função "subscriber_callback" será chamada sempre que uma mensagem for recebida no tópico "my_first_topic". Agora vamos criar essa função:
+
+
+```python
+def subscriber_callback(self, msg):
+        print('I heard: [%s]' % msg.data)
+```
+
+Simples, não é? Você pode apagar a função "timer_callback" que criamos anteriormente, pois não vamos mais usá-la nesse arquivo. Agora vamos compilar o pacote e executar o node para ver o que acontece. Execute o processo de compilação como visto anteriormente.
+
+Após compilar o pacote, execute o seguinte comando para executar o node:
+
+```
+ros2 run turtlesim_project turtlesim_subscriber 
+```
+
+Deu certo? Não? Você deve ter visto uma mensagem reclamando de `no executable found` ou algo relacionado a `importlib_load_entry_point`.
+
+Isso aconteceu porque o ROS2 não sabe que o arquivo "turtlesim_subscriber.py" é um node. Para resolver isso, vamos alterar o arquivo "setup.py".
+
+## Arquivo setup.py
+
+O arquivo `setup.py` é usado para configurar a instalação de pacotes Python, incluindo ROS2. Os "entry points" são uma característica desse arquivo que permite a criação de comandos de terminal a partir de funções Python. No ROS2, eles são usados para expor nós e comandos para outros pacotes.
+
+Pense no arquivo setup.py como o manual de instruções para montar um brinquedo de blocos. Ele diz ao Python (o montador) como montar e onde colocar cada peça (os módulos e scripts do pacote).
+
+Os “entry points” são como as portas especiais que você coloca em sua construção. Eles permitem que outras pessoas (outros pacotes) interajam com sua construção de maneiras específicas, como abrir uma porta para ver dentro ou usar um comando para ativar uma função.
+
+Agora vamos criar um `entry point` para o nosso node adicionando a seguinte linha no arquivo "setup.py":
+
+```python 
+    ...
+    entry_points={
+        'console_scripts': [
+            'turtlesim_teleop = turtlesim_project.turtlesim_teleop:main',
+            'turtlesim_subscriber = turtlesim_project.turlesim_subscriber:main',
+        ],
+    },
+    ...
+```
+
+
+
+
 
 # Tarefa 3: Mensagens Personalizadas no ROS2
 
