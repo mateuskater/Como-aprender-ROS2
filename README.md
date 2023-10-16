@@ -378,24 +378,160 @@ Até agora nós usamos mensagens do tipo String para publicar e assinar mensagen
 
 Mas que tipo de mensagem devemos usar para controlar a tartaruga? Uma String não parece ser o tipo de mensagem mais adequado para isso.
 
-# Tarefa 4: Serviços no ROS2
+## Descobrindo o tipo de mensagem de um tópico
 
-Objetivo: Ensinar o uso de serviços para tarefas síncronas no ROS2.
-Passos:
-Criar um serviço que permita ao usuário definir a posição desejada da tartaruga.
-Modificar um nó para usar esse serviço para mover a tartaruga para uma posição específica.
+Como o node que recebe os comandos da tartaruga já está implementado temos que usar o mesmo tipo de mensagem que ele espera receber. Para descobrir qual é o tipo de mensagem que o node espera receber, vamos fazer o seguinte:
 
-# Tarefa 5: Ações no ROS2
+- 1° Passo: Abra um novo terminal e execute o node do turtlesim `ros2 run turtlesim turtlesim_node` 
+- 2° Passo: Use o comando `ros2 topic list` para listar os tópicos que estão sendo publicados e assinados no momento.
+- 3° Passo: Você devera ver o topico "/turtle1/cmd_vel" na lista. Esse é o tópico que o node do turtlesim espera receber mensagens para controlar a tartaruga.
+- 4° Passo: Use o comando `ros2 topic info /turtle1/cmd_vel` para ver o tipo de mensagem que esse tópico espera receber.
 
-Objetivo: Introduzir ações para tarefas assíncronas no ROS2.
-Passos:
-Criar uma ação que permita ao usuário definir um objetivo de movimento para a tartaruga.
-Criar um nó que execute ações para mover a tartaruga de acordo com o objetivo.
+A saida deve ser algo assim:
 
-# Tarefa Final: Combinação de Tarefas
+```
+Type: geometry_msgs/msg/Twist
+Publisher count: 0
+Subscription count: 1
+```
 
-Objetivo: Criar uma aplicação mais complexa que utiliza todos os conceitos aprendidos.
-Passos:
-Crie um cenário onde a tartaruga deve seguir um caminho predefinido (usando serviços).
-Ao longo do caminho, a tartaruga deve evitar obstáculos (usando ações).
-Lembre-se de fornecer explicações detalhadas, exemplos de código e exercícios práticos para os alunos em cada tarefa. Certifique-se também de incluir desafios opcionais para alunos mais avançados e de incentivar a experimentação e a resolução de problemas. Ao final do curso, os alunos devem ter um entendimento sólido dos conceitos básicos do ROS2 e como aplicá-los usando o Turtlesim.
+Então o tipo de mensagem que o node espera receber é `geometry_msgs/msg/Twist`. Agora vamos ver como é essa mensagem.
+
+## Explicando Geometry_msgs/msg/Twist
+
+A mensagem `geometry_msgs/msg/Twist` é um tipo de mensagem definido no pacote geometry_msgs. Essa mensagem é usada para representar velocidades lineares e angulares em um sistema de coordenadas tridimensional. Ela contém os seguintes campos:
+
+- linear: um vetor com três componentes (x, y, z) que representa a velocidade linear nas direções x, y e z.
+- angular: um vetor com três componentes (x, y, z) que representa a velocidade angular em torno dos eixos x, y e z.
+
+![Alt text](assets/imgs/turtlesim-tutorial.png)
+
+Como o ambiente do turtlesim é 2D, no linear nós só precisamos nos preocupar com a velocidade linear nas direções x e y. Já no angular nós só precisamos nos preocupar com a velocidade angular em torno do eixo z.
+
+# Tarefa 6: Finalmente, controlando a tartaruga
+
+Antes de continuar tente você criar um node que receba uma entrada do teclado e publique mensagens do tipo `geometry_msgs/msg/Twist` no tópico `/turtle1/cmd_vel`. Utilize as setas para controlar a velocidade linear e as letra 'a' e 'd' para a velocidade angular. Se você não conseguir, não se preocupe, vamos fazer isso juntos agora.
+
+Primeiro, vamos mudar o nome da classe 'MyNode' para 'TurtlesimTeleop'. Depois disso vamor importar o tipo de mensagem que vamos usar:
+
+```python
+from geometry_msgs.msg import Twist
+```
+
+Importe o pynput para ler as entradas do teclado:
+
+```python
+from pynput import keyboard
+```
+
+Caso não tenha o pynput instalado, você pode instalar com o seguinte comando:
+
+```
+pip3 install pynput
+```
+
+Vamos agora alterar o construtor do nosso node para que ele crie um publicador que envia mensagens do tipo `geometry_msgs/msg/Twist` para o tópico `/turtle1/cmd_vel`:
+
+```python
+class TurtlesimTeleop(Node):
+    turtle_linear_speed = 1.0
+    turtle_angular_speed = 2.0
+
+    def __init__(self):
+        super().__init__('my_node')
+        self.publisher_ = self.create_publisher(Twist, '/turtle1/cmd_vel', 10)
+        self.key_listener = keyboard.Listener(on_press=self.on_press)
+        self.key_listener.start()
+```
+
+A linha `self.key_listener = keyboard.Listener(on_press=self.on_press)` está criando um objeto Listener da biblioteca keyboard. Este objeto é responsável por “ouvir” quando uma tecla é pressionada no teclado.
+
+O parâmetro on_press=self.on_press é uma função de callback que será chamada toda vez que uma tecla for pressionada. Neste caso, a função self.on_press será chamada.
+
+Então, essa linha de código está dizendo: “Crie um Listener para o teclado e, sempre que uma tecla for pressionada, chame a função self.on_press”. 
+
+Agora, vamos implementar a função `on_press`, ela vai conter a lógica que fará a tartaruga se mover:
+
+```python
+    def on_press(self, key):
+        msg = Twist()
+
+        if (key == keyboard.Key.up):
+            msg.linear.x = self.turtle_linear_speed  
+        elif (key == keyboard.Key.down):
+            msg.linear.x = -self.turtle_linear_speed 
+        elif (key == keyboard.Key.left):
+            msg.linear.y = self.turtle_linear_speed
+        elif (key == keyboard.Key.right):
+            msg.linear.y = -self.turtle_linear_speed
+        elif (key == keyboard.KeyCode(char='a')):
+            msg.angular.z = self.turtle_angular_speed
+        elif (key == keyboard.KeyCode(char='d')):
+            msg.angular.z = -self.turtle_angular_speed
+
+        self.publisher_.publish(msg)
+```
+
+O `turtle_linear_speed` e o `turtle_angular_speed` são definidos no começo da classe, fique a vontade para alterar esses valores e ver o que acontece.
+
+O código final ficará assim:
+
+```python
+import rclpy
+from rclpy.node import Node
+from pynput import keyboard
+from geometry_msgs.msg import Twist
+
+class TurtlesimTeleop(Node):
+    turtle_linear_speed = 1.0
+    turtle_angular_speed = 2.0
+
+    def __init__(self):
+        super().__init__('my_node')
+        self.publisher_ = self.create_publisher(Twist, '/turtle1/cmd_vel', 10)
+        self.key_listener = keyboard.Listener(on_press=self.on_press)
+        self.key_listener.start()
+
+    def on_press(self, key):
+        msg = Twist()
+
+        if (key == keyboard.Key.up):
+            msg.linear.x = self.turtle_linear_speed  
+        elif (key == keyboard.Key.down):
+            msg.linear.x = -self.turtle_linear_speed 
+        elif (key == keyboard.Key.left):
+            msg.linear.y = self.turtle_linear_speed
+        elif (key == keyboard.Key.right):
+            msg.linear.y = -self.turtle_linear_speed
+        elif (key == keyboard.KeyCode(char='a')):
+            msg.angular.z = self.turtle_angular_speed
+        elif (key == keyboard.KeyCode(char='d')):
+            msg.angular.z = -self.turtle_angular_speed
+        
+
+        self.publisher_.publish(msg)
+
+def main(args=None):
+    rclpy.init(args=args)
+    keyboard_publisher = TurtlesimTeleop()
+    rclpy.spin(keyboard_publisher)
+    keyboard_publisher.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
+```
+
+Agora, compile o pacote e execute o node. Você deve ver a tartaruga se movendo quando você pressiona as teclas do teclado.
+
+
+![Alt text](assets/gifs/final.gif)
+
+
+# Conclusão
+
+Parabéns, você controlou a tartaruga usando ROS2. Agora você pode criar um node que recebe informações de um sensor e controla a tartaruga, ou um node que recebe comandos de um joystick e controla a tartaruga. As possibilidades são infinitas.
+
+O turtlesim é apenas um simulado simples, coisas mais legais podem ser feitas usando o Gazebo. Vamos ver isso em outros projetos.
+
+OBS: Você pode melhorar o código de controle e também deixar a interface mais bonita. Fique a vontade para fazer isso.
