@@ -193,7 +193,19 @@ Aqui está o que cada linha faz:
 
 ### Executando o node
 
-Vamos executar essa estrutura básica de node para ver o que acontece. Para isso abra um novo terminal e vá até o diretório "tarefa1_ws" e execute o seguinte comando:
+
+Primeiro, na pasta raiz do package, acesse o arquivo setup.py e adicione o turltesim_teleop no entry points(vlw Muriki por achar o erro). Seu arquivo deve ficar assim:
+
+```
+entry_points={
+        'console_scripts': [
+            'hello_world = turtlesim_project.hello_world:main',
+            'turlesim_teleop = turtlesim_project.turtlesim_teleop:main'
+        ],
+    },
+```
+
+Agora estamos prontos para executar essa estrutura básica de um node. Para isso abra um novo terminal e vá até o diretório "tarefa1_ws" e execute o seguinte comando:
 
 ```
 colcon build
