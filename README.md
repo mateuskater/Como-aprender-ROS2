@@ -200,7 +200,7 @@ Primeiro, na pasta raiz do package, acesse o arquivo setup.py e adicione o turlt
 entry_points={
         'console_scripts': [
             'hello_world = turtlesim_project.hello_world:main',
-            'turlesim_teleop = turtlesim_project.turtlesim_teleop:main'
+            'turtlesim_teleop = turtlesim_project.turtlesim_teleop:main'
         ],
     },
 ```
@@ -368,7 +368,7 @@ Agora vamos criar um `entry point` para o nosso node adicionando a seguinte linh
     entry_points={
         'console_scripts': [
             'turtlesim_teleop = turtlesim_project.turtlesim_teleop:main',
-            'turtlesim_subscriber = turtlesim_project.turlesim_subscriber:main',
+            'turtlesim_subscriber = turtlesim_project.turtlesim_subscriber:main',
         ],
     },
     ...
